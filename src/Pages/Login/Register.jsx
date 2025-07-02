@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
-import AuthProvider, { AuthContext } from '../../prvider/AuthProvider'
+import AuthProvider, { AuthContext } from '../../provider/AuthProvider'
 import {FaGoogle} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
    const {loading,createUser,googleSignIn}=useContext(AuthContext)
@@ -39,7 +40,7 @@ const Register = () => {
       setLoadingSignIn(false);
     });
    }
-   
+
    const handleSignInWithGoole=()=>{
       googleSignIn()
         .then(()=>{
@@ -65,7 +66,10 @@ const Register = () => {
           <label className="label">Password</label>
           <input type="password" name='password' className="input" placeholder="Password" />
 
-          <div><a className="link link-hover">Forgot password?</a></div>
+        <div>
+          <span  className="link link-hover"><Link to={'/login'}>already have an account? Login</Link>
+          </span>
+        </div>
 
           {loading&&loadingSign?<button className="btn btn-neutral mt-4">
             <span className='loading loading-spinner loading-md text-white'></span></button> :

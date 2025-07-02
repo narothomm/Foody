@@ -2,14 +2,14 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext,useState,useEffect } from "react"
 import { auth } from "../firebase/firebase.config"
 
-
+//create provider for Google Sign In feature  and global context 
 const provider=new GoogleAuthProvider();
 export const AuthContext=createContext(null)
 
 //custom react component and usestate Hook
 const AuthProvider = ({children}) => {
    const[loading,setLoading]=useState(false)
-   const[user,setUser]=useState(false)
+   const[user,setUser]=useState(null)
 
 //new user registration by firebase
    const createUser=(email,password)=>{
@@ -41,7 +41,7 @@ const logout=()=>{
          setLoading(false)
       })
       return()=>{
-         unsubscribe
+         unsubscribe()
       }
    },[])
    

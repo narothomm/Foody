@@ -1,6 +1,10 @@
-import { AuthContext } from '../../prvider/AuthProvider'; 
+import { AuthContext } from '../../provider/AuthProvider'; 
 import React, { useContext, useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
+
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";  
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const {loading,SignIn,googleSignIn}=useContext(AuthContext)
@@ -22,13 +26,30 @@ const Login = () => {
      }
      const handleSignInWithGoole=()=>{
         googleSignIn()
-          .then(()=>{
-           console.log(error)
+          .then((user)=>{
+           console.log(user)
           })
           .catch((error)=>{
            console.log(error)
           })
      }
+
+  //This func is forgate password 
+const handleForgotPassword = () => {
+  const email = prompt("তোমার রেজিস্টার্ড ইমেইল লিখো:");
+  if (!email) return;
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert("পাসওয়ার্ড রিসেট লিংক পাঠানো হয়েছে। ইনবক্স চেক করো।");
+    })
+    .catch((error) => {
+      console.error(error.message);
+      alert("ইমেইল সঠিক নয় অথবা অন্য কোনো সমস্যা হয়েছে।");
+    });
+};
+
+
   return (
    <div className="hero bg-base-200 min-h-screen">
     <div className="hero-content flex-col lg:flex-row-reverse">
@@ -41,8 +62,18 @@ const Login = () => {
                <input type="email" name='email' className="input" placeholder="Email" />
                <label className="label">Password</label>
                <input type="password" name='password' className="input" placeholder="Password" />
+
+              <div>
+                <span className='link link-hover'> <Link to={'/signup'}> Don't have an account? Signup 
+                </Link> </span>
+              </div>
      
-               <div><a className="link link-hover">Forgot password?</a></div>
+               <div>
+                <a onClick={handleForgotPassword} className="link link-hover cursor-pointer 
+                text-sm text-blue-600">
+                Forgot password? </a>
+               </div>
+
      
                {loading&&loadingSign?<button className="btn btn-neutral mt-4">
                  <span className='loading loading-spinner loading-md text-white'></span></button> :
