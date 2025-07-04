@@ -4,11 +4,15 @@ import { FaGoogle } from 'react-icons/fa'
 
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";  
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-  const {loading,SignIn,googleSignIn}=useContext(AuthContext)
-     const[loadingSign,setLoadingSignIn]=useState(null)
+    const {loading,SignIn,googleSignIn}=useContext(AuthContext)
+    const[loadingSign,setLoadingSignIn]=useState(null)
+
+    const navigate=useNavigate()
+    const location=useLocation()
   
      const handleLogin=(event)=>{
         setLoadingSignIn(true)
@@ -18,34 +22,36 @@ const Login = () => {
   
      SignIn(email,password)
        .then((user)=>{
-        console.log(user)
+        toast.success("Login Successfully")
+        navigate(location?.state ? location.state : '/')
        })
-       .catch((error)=>{
-        console.log(error)
+       .catch(()=>{
+        toast.error("Something went wrong,Login failed")
        })
      }
      const handleSignInWithGoole=()=>{
         googleSignIn()
           .then((user)=>{
-           console.log(user)
+          toast.success("Google Login seccessfully")
+          navigate(location?.state? location.state :'/')
           })
           .catch((error)=>{
-           console.log(error)
+           toast.error("Something went wrong,Login with google faild")
           })
      }
 
-  //This func is forgate password 
+  //This func use in forgate password 
 const handleForgotPassword = () => {
-  const email = prompt("তোমার রেজিস্টার্ড ইমেইল লিখো:");
+  const email = prompt("Type your email:");
   if (!email) return;
 
   sendPasswordResetEmail(auth, email)
     .then(() => {
-      alert("পাসওয়ার্ড রিসেট লিংক পাঠানো হয়েছে। ইনবক্স চেক করো।");
+      alert("Send reset link,check your email inbox");
     })
     .catch((error) => {
       console.error(error.message);
-      alert("ইমেইল সঠিক নয় অথবা অন্য কোনো সমস্যা হয়েছে।");
+      alert("Email is not correct or another problim");
     });
 };
 
@@ -73,11 +79,11 @@ const handleForgotPassword = () => {
                 text-sm text-blue-600">
                 Forgot password? </a>
                </div>
-
      
-               {loading&&loadingSign?<button className="btn btn-neutral mt-4">
-                 <span className='loading loading-spinner loading-md text-white'></span></button> :
-                 <button type='submit' className='btn btn-neutral mt-4'>Login</button>
+               {loading&&loadingSign?(
+                <button className="btn btn-neutral mt-4">
+                 <span className='loading loading-spinner loading-md text-white'></span></button>) :
+                 (<button type='submit' className='btn btn-neutral mt-4'>Login</button>)
                }         
              </form>
              <button onClick={handleSignInWithGoole}

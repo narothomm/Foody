@@ -1,11 +1,18 @@
 import React, { useContext, useState } from 'react'
 import AuthProvider, { AuthContext } from '../../provider/AuthProvider'
 import {FaGoogle} from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { updateProfile } from 'firebase/auth'
+import { auth } from '../../firebase/firebase.config'
+import toast from 'react-hot-toast'
 
 const Register = () => {
    const {loading,createUser,googleSignIn}=useContext(AuthContext)
    const[loadingSign,setLoadingSignIn]=useState(null)
+
+   const navigate=useNavigate()
+   const location=useLocation()
 
    const handleRegister=(event)=>{
       setLoadingSignIn(true)
@@ -23,31 +30,26 @@ const Register = () => {
    createUser(email,password)
      .then((user)=>{
       console.log(user)
+      event.target.reset()
+      updateProfile(auth.currentUser,{displayName:name})
+     }).then(()=>{
+       toast.success("Registration Successfully")
+       navigate(location?.state ? location.state : '/')
      })
-   //   .catch((error)=>{
-   //    console.log(error)
-   //   })
 
-    .catch((error) => {
-      console.log("registration error:", error);
-      if (error.code === "auth/email-already-in-use") {
-        alert("Emain already in use, provide new email");
-      } else if (error.code === "auth/invalid-email") {
-        alert("Your email don't valid,please enter a valid email");
-      } else {
-        alert("Have a problim in registrarion : " + error.message);
-      }
-      setLoadingSignIn(false);
-    });
-   }
-
+     .catch((error)=>{
+      toast.error("Something went wrong,Registration failed")
+     })
+  }
+   
    const handleSignInWithGoole=()=>{
       googleSignIn()
         .then(()=>{
-         console.log()
+        toast.success("Google SignIn seccessfully")
+        navigate(location?.state? location.state :'/')
         })
         .catch((error)=>{
-         console.log(error)
+         toast.error("Something went wrong,signIn with google faild")
         })
       
    }

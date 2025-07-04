@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../../provider/AuthProvider'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
     //only for see in console
@@ -9,7 +10,14 @@ const Navbar = () => {
 
     //logout func
     const handleLogout=()=>{
-        logout()
+        if(user){
+           logout()
+           toast.success("logout successfully")
+        }else{
+            toast("you are not loge in yet.please login first")
+        }
+
+       
     }
 
     //UI section
@@ -64,6 +72,10 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+
+                          <li>
+                            <span>{user?.displayName}</span>
+                          </li>
                         <li>
                             <a className="justify-between">
                                 Profile
@@ -73,9 +85,8 @@ const Navbar = () => {
                         <li><a>Settings</a></li>
                         {
                          user? (
-                            <li><button onClick={handleLogout}> Logout</button></li> ) :
-                             (<li><Link to={'/login'} className='text-red-600'> Login</Link></li>)
-                          
+                            <button onClick={handleLogout}> Logout</button> ) :
+                             (<Link to={'/login'} className='text-red-500'> Login</Link>)
                         }
                         
                     </ul>
