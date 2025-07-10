@@ -62,7 +62,7 @@ const Carousel = () => {
    <div key={idx}
    id={`slide${idx}`} className="carousel-item relative w-full">
    <img src={item.img}
-   className='w-full h-[500px] rounded-lg'/>
+   className='w-full h-[600px] rounded-lg'/>
 
    <div className='absolute left-0 top-0 bg-gradindt-to-r from-[#151515] to-[rgba(21,21,21,0,00)100%] h-full  rounded-lg flex flex-col justify-center'>
       <div className='p-12 w-1/2 space-y-5'>

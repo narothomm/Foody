@@ -32,9 +32,15 @@ const Register = () => {
       console.log(user)
       event.target.reset()
       updateProfile(auth.currentUser,{displayName:name})
-     }).then(()=>{
-       toast.success("Registration Successfully")
+
+     }).then(async()=>{
+      const userInfo = { name, email }
+      const response=await axios.post(" http://127.0.0.1:8000/api/save-user",userInfo)
+      if(response.status==200){
+        toast.success("Registration Successfully")
        navigate(location?.state ? location.state : '/')
+      }
+       
      })
 
      .catch((error)=>{
@@ -42,6 +48,7 @@ const Register = () => {
      })
   }
    
+
    const handleSignInWithGoole=()=>{
       googleSignIn()
         .then(()=>{
