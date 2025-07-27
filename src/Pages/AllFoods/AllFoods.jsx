@@ -40,7 +40,9 @@ const AllFoods = () => {
                 <li><strong>Rating:</strong> {item.rating} </li>
               </ul>
 
-               <button children='btn btn-neutral mt-3 w-full'>Order now</button>
+               <button className='btn btn-neutral mt-3 w-full'>Order now</button>
+               
+               {/* <button children='btn btn-neutral mt-3 w-full'>Order now</button> */}
 
               {/* <button
                 disabled={item.quantity === 0}

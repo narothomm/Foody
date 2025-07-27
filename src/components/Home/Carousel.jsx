@@ -1,13 +1,14 @@
 import React from 'react'
-import food1 from'../assets/images/food1.jpg'
-import food2 from'../assets/images/food2.jpg'
-import food3 from'../assets/images/food3.jpg'
-import food4 from'../assets/images/food4.jpg'
-import food5 from'../assets/images/food5.jpg'
-import food6 from'../assets/images/food6.jpg'
-import food7 from'../assets/images/food7.jpg'
-import food8 from'../assets/images/food8.jpg'
+import food1 from'../../assets/images/food1.jpg'
+import food2 from'../../assets/images/food2.jpg'
+import food3 from'../../assets/images/food3.jpg'
+import food4 from'../../assets/images/food4.jpg'
+import food5 from'../../assets/images/food5.jpg'
+import food6 from'../../assets/images/food6.jpg'
+import food7 from'../../assets/images/food7.jpg'
+import food8 from'../../assets/images/food8.jpg'
 import { Link } from 'react-router-dom'
+
 
 
 const Carousel = () => {
@@ -59,10 +60,9 @@ const Carousel = () => {
    <div className="carousel w-full mt-5">
   {
    bannerInfo.map((item,idx)=>
-   <div key={idx}
-   id={`slide${idx}`} className="carousel-item relative w-full">
-   <img src={item.img}
-   className='w-full h-[600px] rounded-lg'/>
+    
+   <div key={idx} id={`slide${idx}`} className="carousel-item relative w-full">
+   <img src={item.img}   className='w-full h-[600px] rounded-lg'/>
 
    <div className='absolute left-0 top-0 bg-gradindt-to-r from-[#151515] to-[rgba(21,21,21,0,00)100%] h-full  rounded-lg flex flex-col justify-center'>
       <div className='p-12 w-1/2 space-y-5'>
