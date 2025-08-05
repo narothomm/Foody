@@ -6,6 +6,7 @@ import { auth } from "../firebase/firebase.config"
 const provider=new GoogleAuthProvider();
 export const AuthContext=createContext(null)
 
+
 //custom react component and usestate Hook
 const AuthProvider = ({children}) => {
    const[loading,setLoading]=useState(false)
