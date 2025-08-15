@@ -1,9 +1,12 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BASE_URL } from '../../utils/Constants'
+import { CartContext } from '../../provider/CartProvider'
 
 const FoodsCategory = () => {
+
+const{addToCart}=useContext(CartContext)
 
     const {cat}=useParams()
 
@@ -22,6 +25,7 @@ const FoodsCategory = () => {
         setFoods(res.data)
     }
         fetchCategoryFood()
+   
         
         },[cat])
     
@@ -52,7 +56,7 @@ const FoodsCategory = () => {
                                <p className="text-gray-600 text-sm "> 💲{item.price} </p>
                             </div>
                            
-                           <button className='btn btn-neutral mt-3 w-full '> Order Now </button>
+                           <button onClick={()=>addToCart(item.id)} className='btn btn-neutral mt-3 w-full '> Order Now </button>
                            
                      </div>
                 </div>

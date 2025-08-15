@@ -7,11 +7,11 @@ const AddFoodItem = () => {
     const [preview, setPreview] = useState(null)
 
     const handleImageChange = (event) => {
-        const file = event.target.files[0]         //ইউজার যদি ছবি নির্বাচন করে, তাহলে file ধরে।
+        const file = event.target.files[0]                   //ইউজার যদি ছবি নির্বাচন করে, তাহলে file ধরে।
         if (file) {
-            setPreview(URL.createObjectURL(file))  //URL.createObjectURL(file) দিয়ে সেই ছবির preview লিঙ্ক তৈরি করে।
+            setPreview(URL.createObjectURL(file))            //URL.createObjectURL(file) দিয়ে সেই ছবির preview লিঙ্ক তৈরি করে।
         } else {
-            setPreview(null)                      //যদি ফাইল না থাকে, preview ফাঁকা করে দেয়।
+            setPreview(null)                                 //যদি ফাইল না থাকে, preview ফাঁকা করে দেয়।
         }
     }
 
@@ -35,11 +35,11 @@ const AddFoodItem = () => {
             const res = await axios.post(`${BASE_URL}/api/add-food/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
             if (res.status == 200) {
                 toast.success("Food item added successfully")
-                form.reset()      // সফল হলে toast মেসেজ দেখায়, ফর্ম রিসেট করে এবং preview মুছে দেয়।
+                form.reset()             // সফল হলে toast মেসেজ দেখায়, ফর্ম রিসেট করে এবং preview মুছে দেয়।
                 setPreview(null)
             }
         } catch (error) {
-            console.log(error)   // যদি কোনো সমস্যা হয় তাহলে কনসোলে দেখায়।
+            console.log(error)          // যদি কোনো সমস্যা হয় তাহলে কনসোলে দেখায়।
         }
     }
 

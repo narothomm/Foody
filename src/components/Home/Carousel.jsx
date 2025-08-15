@@ -1,12 +1,12 @@
 import React from 'react'
-import food1 from'../../assets/images/food1.jpg'
+import food8 from'../../assets/images/food8.jpg'
 import food2 from'../../assets/images/food2.jpg'
 import food3 from'../../assets/images/food3.jpg'
 import food4 from'../../assets/images/food4.jpg'
 import food5 from'../../assets/images/food5.jpg'
 import food6 from'../../assets/images/food6.jpg'
 import food7 from'../../assets/images/food7.jpg'
-import food8 from'../../assets/images/food8.jpg'
+import food1 from'../../assets/images/food1.jpg'
 import { Link } from 'react-router-dom'
 
 
@@ -16,12 +16,12 @@ const Carousel = () => {
    const bannerInfo = [
   { 
     img:food1,
-    title: "Grilled Chicken Salad",
+     title: "Beef Burger",
     description: "A healthy mix of grilled chicken breast, fresh greens, cherry tomatoes, and a light vinaigrette dressing."
   },
   { 
     img:food2,
-    title: "Beef Burger",
+    title: "Grilled Chicken Salad",
     description: "Juicy beef patty served with cheese, lettuce, tomato, and a sesame seed bun with crispy fries on the side."
   },
   {
