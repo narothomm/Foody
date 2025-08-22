@@ -12,9 +12,7 @@ export const useIsAdmin = () => {
         const fetchRole = async () => {
             if (user?.email) {
                 try {
-                    const res = await axios.post(`${BASE_URL}/api/check-role`, {
-                        user_email: user.email
-                    })
+                    const res = await axios.post(`${BASE_URL}/api/check-role`, {user_email: user.email})
                     setIsAdmin(res.data.role === "admin")
                 } catch (err) {
                     console.error(err)

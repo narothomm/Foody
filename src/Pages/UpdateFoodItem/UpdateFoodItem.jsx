@@ -40,7 +40,7 @@ const UpdateFoodItem=()=>{
 
         const form=e.target
         const data=new FormData()
-       data.append('title', form.title.value)
+        data.append('title', form.title.value)
         data.append('description', form.description.value)
         data.append('price', form.price.value)
         data.append('quantity', form.quantity.value)

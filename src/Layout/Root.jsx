@@ -5,13 +5,14 @@ import { Toaster } from 'react-hot-toast'
 
 const Root = () => {
   return (
-   <div className='container mx-auto'>
-   <Navbar/>
-
-   <Outlet/>
-   <Toaster/>
+   <div className=''>
+      <Navbar/>
+      <Outlet>
+        
+      </Outlet>
+      <Toaster/>
       
-   </div>
+  </div>
    
   )
 }

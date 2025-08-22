@@ -9,6 +9,9 @@ import AddFoodItem from "../Pages/AddFoodItem/AddFoodItem";
 import UpdateFoodItem from "../Pages/UpdateFoodItem/UpdateFoodItem";
 import FoodsCategory from "../Pages/FoodsCategory/FoodsCategory";
 import CartPage from "../Pages/CartPage/CartPage";
+import DashBoardLayout from "../Layout/DashBoardLayout";
+import DashBoardAllFoods from "../Pages/Dashboard/DashBoardAllFoods";
+import AdminRoute from "../privateRoutes/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -32,14 +35,7 @@ const router = createBrowserRouter([
       path:'/login',
       element:<Login/>
     },
-     {
-      path:'/add-food',
-      element:<AddFoodItem/>
-    },
-    {
-      path:'/update-food/:id',
-      element:<UpdateFoodItem/>
-    },
+     
     {
       path:'/category/:cat',
       element:<FoodsCategory/>
@@ -51,6 +47,26 @@ const router = createBrowserRouter([
 
     ]
   },
+
+  {
+    path:'dashboard',
+    element:<AdminRoute> <DashBoardLayout/> </AdminRoute>,
+    errorElement:<ErrorPage/>,
+    children:[
+          {
+            path:'add-food',
+            element:<AdminRoute> <AddFoodItem/> </AdminRoute>
+          },
+        {
+          path:'update-food/:id',
+          element:<AdminRoute> <UpdateFoodItem/></AdminRoute>
+        },
+        {
+            path:'all-foods',
+            element: <AdminRoute> <DashBoardAllFoods/> </AdminRoute>
+        }
+    ]
+  }
 ]);
 
 

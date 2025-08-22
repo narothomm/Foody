@@ -25,12 +25,6 @@ export const PopularFoods = () => {
       <h1 className='text-3xl font-bold  text-center mb-8'> PopularFoods  </h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
 
-          {/* alternative we use this code    This best practics */}
-          {/* {  foods.length > 0 ? (    
-             foods.map((item) => (
-             <div key={item.id} className='bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:cursor-pointer'>
-             <img src={item.image} alt='img' className='w-full h-48 rounded-xl' /> */}
-
         {
             foods.length>0 ?(                    
                foods.map((item)=>(

@@ -9,6 +9,7 @@ import AuthProvider from './provider/AuthProvider.jsx'
 import CartProvider from './provider/CartProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
+  
   <StrictMode>
 
     <AuthProvider>

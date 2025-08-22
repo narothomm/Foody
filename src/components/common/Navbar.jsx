@@ -92,7 +92,7 @@ const Navbar = () => {
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><Link to={'/dashboard'}>dashboard</Link></li>
                         {
                          user? (
                             <button onClick={handleLogout}> Logout</button> ) :
